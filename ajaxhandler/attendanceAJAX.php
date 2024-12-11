@@ -32,8 +32,7 @@ if(isset($_REQUEST['action']))
          $dbo=new Database();
          $sobj=new SessionDetails();
          $rv=$sobj->getSessions($dbo);
-         //getSessions
-         //$rv=["2023 SPRING","2023 AUTUMN"];
+         
          echo json_encode($rv);
     }
     //data:{facid:facid,sessionid:sessionid,action:"getFacultyCourses"},
@@ -60,10 +59,10 @@ if(isset($_REQUEST['action']))
          $dbo=new Database();
         $crgo=new CourseRegistrationDetails();
         $allstudents=$crgo->getRegisteredStudents($dbo,$sessionid,$classid);
-        //lets get the attendance of these students on that day by the fac
+ 
         $ado=new attendanceDetails();
         $presentStudents=$ado->getPresentListOfAClassByAFacOnADate($dbo,$sessionid,$classid,$facid,$ondate);
-        //lets iterate offer all students and mark them present
+        //iterate offer all students and mark them present
         //if in presentlist
         for($i=0;$i<count($allstudents);$i++)
         {
@@ -110,17 +109,12 @@ if(isset($_REQUEST['action']))
         
          $dbo=new Database();
         $ado=new attendanceDetails();
-        //$rv=$ado->saveAttendance($dbo,$sessionid,$courseid,$facultyid,$studentid,$ondate,$status);
-         //$rv=[];
-         //lets first create a dummy csv
-         //we need an array of arrays, each array is a line
          $list=[
-            [1,"MCJ21001",20.00],
-            [2,"BBM21002",30.00],
-            [3,"COM21003",40.00]
+            [1,"M",20.00],
+            [2,"B",30.00],
+            [3,"C",40.00]
          ];
          $list=$ado->getAttenDanceReport($dbo,$sessionid,$courseid,$facultyid);
-         //now this list we have to generate, the actual one
          $filename="/attendanceapp/report.csv";
          $rv=["filename"=>$filename];
          createCSVReport($list,$filename);

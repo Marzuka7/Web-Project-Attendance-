@@ -249,29 +249,29 @@ values
   (:sid, :cid, :sessid)";
   $s = $dbo->conn->prepare($c);
   
-  // Iterate over all 30 students
+ 
   for ($i = 1; $i <= 30; $i++) {
-      // Register for courses with IDs 1–6 in Session 1
+      
       for ($cid = 1; $cid <= 6; $cid++) {
           try {
               $s->execute([":sid" => $i, ":cid" => $cid, ":sessid" => 1]);
           } catch (PDOException $pe) {
-              // Handle duplicate entries or other exceptions
+           
           }
       }
   
-      // Register for courses with IDs 7–11 in Session 2
+   
       for ($cid = 7; $cid <= 11; $cid++) {
           try {
               $s->execute([":sid" => $i, ":cid" => $cid, ":sessid" => 2]);
           } catch (PDOException $pe) {
-              // Handle duplicate entries or other exceptions
+              
           }
       }
   }
 
 
-  // if any record already there in the table delete them
+  
 clearTable($dbo, "course_allotment");
 
 $c = "insert into course_allotment
@@ -282,29 +282,27 @@ $s = $dbo->conn->prepare($c);
 
 // Iterate over all 6 teachers
 for ($i = 1; $i <= 6; $i++) {
-    // For Session 1, assign teachers to courses 1-6
+    // For Session 1
     for ($j = 0; $j < 2; $j++) {
-        // Assign a random course between 1 and 6
+       
         $cid = rand(1, 6);
 
         // Insert into course_allotment for Session 1
         try {
             $s->execute([":fid" => $i, ":cid" => $cid, ":sessid" => 1]);
         } catch (PDOException $pe) {
-            // Handle exceptions
+           
         }
     }
 
-    // For Session 2, assign teachers to courses 7-11 only
+    // For Session 2
     for ($j = 0; $j < 2; $j++) {
         // Assign a random course between 7 and 11
         $cid = rand(7, 11);
-
-        // Insert into course_allotment for Session 2
         try {
             $s->execute([":fid" => $i, ":cid" => $cid, ":sessid" => 2]);
         } catch (PDOException $pe) {
-            // Handle exceptions
+           
         }
     }
 }

@@ -20,7 +20,7 @@ class attendanceDetails
         catch(Exception $e)
         {
              //$rv=[$e->getMessage()];
-             //it might happen that the entry is there, we just have to set reset the status
+
              $c="update attendance_details set status=:status
                 where 
                 session_id=:session_id and course_id=:course_id and faculty_id=:faculty_id
@@ -163,7 +163,7 @@ class attendanceDetails
         {
 
         }
-         //compute the precent
+      
         for($i=0;$i<count($rv);$i++)
         {
          $rv[$i]['percent']=0.00;

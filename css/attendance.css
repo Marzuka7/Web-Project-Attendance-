@@ -1,0 +1,365 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    --fontsize:.8rem;/* 4 screen less than 600*/
+    --gap:.3rem;
+    --padding:.4rem;
+    transition: all 600ms;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.page
+{    
+    width:min(1200px,95%);
+    display:grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+    "header-area"
+    "session-area"
+    "classlist-area"
+    "classdetails-area"
+    "studentlist-area" ;
+
+    padding-top:calc(var(--padding)*8);
+    padding-bottom:calc(var(--padding)*8);
+    border-bottom:solid black 1px;
+}
+
+.header-area
+{
+   grid-area: header-area; 
+   display:grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-areas: "logo-area logout-area";
+   gap:var(--gap);
+   padding:var(--padding);
+   border-bottom:solid 2px rgb(183, 200, 242);
+}
+.logo-area
+{
+    grid-area: logo-area;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.logout-area
+{
+    grid-area: logout-area;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.session-area
+{
+   grid-area: session-area; 
+   display:grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: .5fr 1fr;
+   grid-template-areas: "label-area" "dropdown-area";
+   gap:var(--gap);
+   padding:var(--padding);
+   border-bottom:solid 2px rgb(98, 137, 233);
+}
+.label-area
+{
+    grid-area: label-area;
+    font-size: calc(var(--fontsize)*.8);
+    padding-left:calc(var(--padding)*.6);
+}
+.dropdown-area
+{
+    grid-area: dropdown-area;
+    font-size: calc(var(--fontsize)*1);
+    padding-top:calc(var(--padding));
+    padding-bottom:calc(var(--padding));
+}
+.classlist-area
+{
+   grid-area: classlist-area; 
+   display:flex;
+   flex-wrap: wrap;
+   gap:var(--gap);
+   padding:var(--padding);
+   justify-content: center;
+   align-items: center;
+   border-bottom:solid 2px rgb(98, 137, 233);
+}
+.classdetails-area
+{
+   grid-area: classdetails-area; 
+   gap:var(--gap);
+   padding:var(--padding);
+   border-bottom:solid 2px rgb(98, 137, 233);
+   text-transform: uppercase;
+}
+.studentlist-area
+{
+   grid-area: studentlist-area; 
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap:var(--gap);
+   padding:var(--padding);
+   border-bottom:solid 2px rgb(98, 137, 233)
+}
+
+.btnlogout
+{
+    font-size: var(--fontsize);
+    width:6em;
+    padding:var(--padding);
+    background-color:rgb(70, 115, 230);
+    color:white;
+    border:solid 1px rgb(70, 115, 230);
+    border-radius:.2em;
+    transition: all 200ms;
+    cursor: pointer;
+}
+
+.btnlogout:hover
+{   
+    border-color:rgb(190, 22, 22) ;
+    background-color:rgba(137, 17, 17, 0.767);
+    box-shadow:2px 3px 2px  rgba(0,0,0,.3);
+}
+
+.btnlogout:active
+{
+    opacity: 0.7;
+}
+
+.logo
+{
+    font-size: calc(var(--fontsize)*2.5);
+}
+.ddlclass
+{
+    width:100%;
+      border:none;
+    background-color: transparent;
+    border-bottom:solid 1px blue;   /*session */
+}
+.classcard
+{
+    font-size: calc(var(--fontsize)*1);
+    width:4.7em;
+    height: 4em;
+    border-radius: .2em;
+    background-color:  rgb(183, 200, 242);
+    color:rgb(16, 16, 116);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.classcard:hover{
+    background-color: rgb(70, 115, 230);
+    color:white;
+    transition-duration: .3s;
+}
+
+.classdetails
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
+    grid-template-areas:
+    "title-area title-area"
+    "code-area ondate-area" ;
+    gap:var(--gap);
+    font-size: var(--fontsize);
+}
+.title-area
+{
+    grid-area: title-area;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.code-area
+{
+    grid-area: code-area;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.ondate-area
+{
+    grid-area: ondate-area;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.ondate-area >input
+{
+    font-size: var(--fontsize);
+    background-color: transparent;
+    border:none;
+    border-bottom:solid 1px blue;
+    outline: none;
+}
+.studenttlist
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+}
+.studenttlist >label{
+    font-size: calc(var(--fontsize)*.8);
+}
+
+.studentdetails
+{
+    display:grid;
+    grid-template-columns: .25fr 1.5fr .4fr;
+    grid-template-rows: 1fr  1fr;
+    grid-template-areas: 
+    "slno-area rollno-area checkbox-area"
+    "name-area name-area checkbox-area";
+
+    gap:var(--gap);
+    width:100%;
+    font-size: var(--fontsize);
+    padding-top:calc(var(--padding)*1.5);
+    padding-bottom:calc(var(--padding)*1.5);
+    border-bottom:solid 1px rgb(183, 200, 242);
+    transition: all 100ms;
+    text-transform: uppercase;
+}
+
+.studentdetails:hover
+{
+background-color: rgb(183, 200, 242);
+}
+.reportsection
+{
+    width:100%;
+    font-size: var(--fontsize);
+    padding-top:calc(var(--padding)*1.5);
+    padding-bottom:calc(var(--padding)*1.5); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#btnReport
+{
+  width:8rem;
+  font-size: var(--fontsize);
+  padding:var(--padding);
+  color:white;
+  background-color: rgb(70, 115, 230);
+  border: solid 1px rgb(70, 115, 230);
+  border-radius: .2rem;
+  transition: all 200ms;
+}
+
+#btnReport:hover
+{   
+    border-color:rgb(18, 83, 27) ;
+    background-color:rgb(40, 135, 52);
+    box-shadow:2px 3px 2px  rgba(0,0,0,.3);
+}
+
+#btnReport:active
+{
+    opacity: 0.7;
+}
+
+.checkbox-area
+{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.checkbox-area >input
+{
+    font-size: var(--fontsize);
+    width: 1.5em;
+    height: 1.5em;
+}
+
+
+.slno-area
+{
+    grid-area: slno-area;
+}
+.rollno-area
+{
+    grid-area: rollno-area;
+}
+.name-area
+{
+    grid-area: name-area;
+}
+.checkbox-area
+{
+    grid-area: checkbox-area;
+}
+.absentcolor
+{
+   background-color: rgba(215, 60, 90, 0.40);
+}
+.presentcolor
+{
+    background-color: rgba(70, 210, 110, 0.40);
+}
+
+
+@media only screen and (min-width:600px) {
+    *{
+        --fontsize:.9rem;/*for screen less than 767 > 600*/
+    }
+}
+/*if the screen size is larger than 600px*/
+@media only screen and (min-width:767px) {
+    *{
+        
+        --fontsize:1rem;/*for screen  > 767*/
+    }
+    .session-area
+    {
+    grid-template-columns: .5fr .5fr 1fr .5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "... label-area dropdown-area ...";   
+    }
+    .label-area
+    {
+       display: flex;
+       justify-content: end;
+       align-items: center;
+       padding-left:calc(var(--var)*1);
+    }
+    .classdetails
+    {
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas:
+        "code-area title-area ondate-area";
+        padding-bottom:calc(var(--padding)*1);
+        padding-top:calc(var(--padding)*1);
+    }
+
+    .studentdetails
+    {
+        display:grid;
+        grid-template-columns: 1fr 2fr 3fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: 
+        "slno-area rollno-area name-area checkbox-area";
+       /*removed properties,it means they are the same settings*/
+    }
+    .studentdetails>*
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
